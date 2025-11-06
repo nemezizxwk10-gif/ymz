@@ -1,0 +1,248 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>祝福杨蜜姿</title>
+    <style>
+        /* 基础样式设置 */
+        body {
+            font-family: 'Comic Sans MS', '楷体', cursive, sans-serif;
+            background-color: #f0f8ff;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* 主标题样式 */
+        h1 {
+            color: #ff6b9d;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* 按钮样式 */
+        #startBtn {
+            background-color: #ff6b9d;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.4rem;
+            padding: 15px 30px;
+            cursor: pointer;
+            font-family: inherit;
+            transition: transform 0.3s, opacity 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* 按钮悬停效果 */
+        #startBtn:hover {
+            transform: scale(1.05);
+            opacity: 0.9;
+        }
+        
+        /* 按钮禁用状态 */
+        #startBtn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        /* 弹窗基础样式 */
+        .popup {
+            position: fixed;
+            width: 220px;
+            height: 100px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: pop 0.5s forwards;
+            z-index: 1000;
+            font-weight: bold;
+            color: #333;
+            text-align: center;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        
+        /* 弹窗动画 */
+        @keyframes pop {
+            from {
+                transform: scale(0);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        /* 装饰元素 */
+        .decoration {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            opacity: 0.6;
+            z-index: -1;
+        }
+        
+        /* 心形装饰 */
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            opacity: 0.7;
+            z-index: -1;
+        }
+        
+        .heart:before,
+        .heart:after {
+            content: "";
+            position: absolute;
+            left: 10px;
+            top: 0;
+            width: 10px;
+            height: 16px;
+            background: #ff6b9d;
+            border-radius: 10px 10px 0 0;
+            transform: rotate(-45deg);
+            transform-origin: 0 100%;
+        }
+        
+        .heart:after {
+            left: 0;
+            transform: rotate(45deg);
+            transform-origin: 100% 100%;
+        }
+        
+        /* 祝福语样式 */
+        .message {
+            font-size: 1.2rem;
+            margin-top: 20px;
+            color: #ff6b9d;
+            max-width: 600px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <h1>有一份给杨蜜姿的祝福</h1>
+    <button id="startBtn">接收祝福</button>
+
+    <script>
+        // 祝福语数组
+        const messages = [
+            "徐文康一直都会在",
+            "祝杨蜜姿心想事成",
+            "杨蜜姿天天吃好的",
+            "徐文康喜欢杨蜜姿",
+            "杨蜜姿喜欢徐文康",
+            "杨蜜姿天天漂亮",
+            "家人朋友幸福健康",
+            "家人闲坐,灯火可亲",
+            "杨蜜姿天天都有好心情",
+            "我女朋友杨蜜姿无敌"
+        ];
+        
+        // 背景颜色数组
+        const bgColors = [
+            "#ffc0cb", "#ffb6c1", "#ff69b4", "#ff1493", "#db7093",
+            "#bc8f8f", "#c71585", "#ffa07a", "#ff7f50", "#ffa500",
+            "#ffffe0", "#e6e6fa", "#d8bfd8", "#dda0dd", "#ee82ee"
+        ];
+        
+        // 获取按钮元素
+        const startBtn = document.getElementById('startBtn');
+        
+        // 创建装饰元素
+        function createDecorations() {
+            for (let i = 0; i < 20; i++) {
+                // 创建圆形装饰
+                const circle = document.createElement('div');
+                circle.className = 'decoration';
+                circle.style.left = Math.random() * 100 + 'vw';
+                circle.style.top = Math.random() * 100 + 'vh';
+                circle.style.backgroundColor = bgColors[Math.floor(Math.random() * bgColors.length)];
+                circle.style.width = Math.random() * 30 + 10 + 'px';
+                circle.style.height = circle.style.width;
+                document.body.appendChild(circle);
+                
+                // 创建心形装饰
+                if (i % 3 === 0) {
+                    const heart = document.createElement('div');
+                    heart.className = 'heart';
+                    heart.style.left = Math.random() * 100 + 'vw';
+                    heart.style.top = Math.random() * 100 + 'vh';
+                    heart.style.transform = `scale(${0.5 + Math.random() * 0.5})`;
+                    document.body.appendChild(heart);
+                }
+            }
+        }
+        
+        // 创建弹窗函数
+        function createPopup() {
+            const popup = document.createElement('div');
+            popup.className = 'popup';
+            
+            // 随机位置（避免太靠近边缘）
+            const left = 10 + Math.random() * 90;
+            const top = 10 + Math.random() * 90;
+            popup.style.left = left + 'vw';
+            popup.style.top = top + 'vh';
+
+            // 随机背景色
+            const randomColor = bgColors[Math.floor(Math.random() * bgColors.length)];
+            popup.style.backgroundColor = randomColor;
+            
+            // 随机祝福语
+            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+            popup.textContent = randomMessage;
+            
+            // 添加到页面
+            document.body.appendChild(popup);
+            
+
+        }
+        
+        // 开始祝福函数
+        function startBlessing() {
+            // 禁用按钮
+            startBtn.disabled = true;
+            startBtn.textContent = '祝福发送中...';
+            
+            let count = 0;
+            const interval = setInterval(() => {
+                createPopup();
+                count++;
+                
+                if (count >= 300) {
+                    clearInterval(interval);
+                    
+                    // 5秒后恢复按钮
+                    setTimeout(() => {
+                        startBtn.disabled = false;
+                        startBtn.textContent = '再次接收祝福';
+                    }, 5000);
+                }
+            }, 50);
+        }
+        
+        // 添加按钮点击事件
+        startBtn.addEventListener('click', startBlessing);
+        
+        // 页面加载完成后创建装饰
+        document.addEventListener('DOMContentLoaded', createDecorations);
+    </script>
+</body>
+</html>
